@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="magin_8dp">8dp</dimen>
+    <dimen name="magin_16dp">8dp</dimen>
+</resources>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lapit</string>
+    <string name="welcome_title">Xin Chào đến với Lapit \n Chat App</string>
+    <string name="have_account">ĐÃ CÓ TÀI KHOẢN</string>
+    <string name="create_account_1">TẠO TÀI KHOẢN MỚI</string>
+    <string name="login_your_account">ĐĂNG NHẬP</string>
+    <string name="login">ĐĂNG NHẬP</string>
+    <string name="password">Password</string>
+    <string name="youremail">Your Email</string>
+    <string name="create_new_account">Tạo Tài khoản Mới</string>
+    <string name="display_name">Display Name</string>
+    <string name="create_account_2">TẠO TÀI KHOẢN</string>
+    <string name="logout">Logout</string>
+    <string name="acount_setting">Account Setting</string>
+    <string name="changeimage">Thay Đổi Ảnh</string>
+    <string name="changstatus">Thay Đổi Trạng Thái</string>
+    <string name="alluser">All Users</string>
+    <string name="sendfriendrequest">Kết Bạn</string>
+    <string name="message">Nhắn Tin</string>
+    <string name="requestfriends">Lời Mời Kết Bạn</string>
+</resources>
