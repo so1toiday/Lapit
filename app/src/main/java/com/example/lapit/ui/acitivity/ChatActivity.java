@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.example.lapit.R;
 import com.example.lapit.adapter.AdapterMessage;
 import com.example.lapit.function.getTimeAgo;
 import com.example.lapit.model.Message;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -56,6 +59,8 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,9 +80,9 @@ public class ChatActivity extends AppCompatActivity {
         mMessageReferece.child("chat").child(SentUID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.hasChild(SentUID)){
+                if(!dataSnapshot.hasChild(ReceivedUID)){
                     Map map=new HashMap();
-                    map.put("seen",false);
+                    map.put("message","No Message");
                     map.put("time",ServerValue.TIMESTAMP);
 
                     Map map2=new HashMap();
@@ -170,7 +175,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void sendMessage() {
         // sent messager
-        String Message = mMessage.getText().toString();
+        final String Message = mMessage.getText().toString();
         if (!TextUtils.isEmpty(Message)) {
             DatabaseReference senMessagekey = mMessageReferece.child("message").child(SentUID).child(ReceivedUID).push();
             String key = senMessagekey.getKey();
@@ -188,7 +193,6 @@ public class ChatActivity extends AppCompatActivity {
             message2.put("time", ServerValue.TIMESTAMP);
             message2.put("rq_type","received");
 
-
             Map messageUser = new HashMap();
             messageUser.put("message/" + SentUID + "/" + ReceivedUID + "/" + key, message);
             messageUser.put("message/" + ReceivedUID + "/" + SentUID + "/" + key, message2);
@@ -199,6 +203,16 @@ public class ChatActivity extends AppCompatActivity {
                  mMessage.setText("");
                 }
             });
+
+            Map lastMessage1=new HashMap();
+            lastMessage1.put("time",ServerValue.TIMESTAMP);
+            lastMessage1.put("message",Message);
+
+            Map lastmassageUser=new HashMap();
+            lastmassageUser.put("chat/"+SentUID + "/" + ReceivedUID ,lastMessage1);
+            lastmassageUser.put("chat/"+ReceivedUID + "/" + SentUID ,lastMessage1);
+
+            mMessageReferece.updateChildren(lastmassageUser);
 
         }
     }

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lapit">
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:name=".ui.LapitChatAplication"
         android:allowBackup="true"
@@ -14,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.acitivity.ChatActivity" android:parentActivityName=".ui.acitivity.MainActivity">
-
         </activity>
         <activity android:name=".ui.acitivity.ProfileActivity" />
         <activity
@@ -22,7 +19,6 @@
             android:parentActivityName=".ui.acitivity.MainActivity" />
         <activity android:name=".ui.acitivity.SettingActivity" />
         <activity android:name=".ui.acitivity.ResetPasswordActivity" />
-        <activity android:name=".ui.acitivity.ChatMessagesActivity" />
         <activity android:name=".ui.acitivity.MainActivity" />
         <activity
             android:name=".ui.acitivity.RegisterActivity"

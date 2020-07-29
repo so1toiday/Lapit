@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.example.lapit.R;
@@ -25,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsersActivity extends AppCompatActivity {
-private SearchView mSearchUser;
 private RecyclerView mreUser;
 private DatabaseReference mUserReferebce;
 private List<User> list;
@@ -33,7 +34,10 @@ private ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_user);
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("ALL USERS");
@@ -82,7 +86,6 @@ private ProgressDialog mProgressDialog;
     }
 
     private void Anhxa() {
-        mSearchUser=findViewById(R.id.svSearchUser);
         mreUser=findViewById(R.id.reUser);
     }
 }

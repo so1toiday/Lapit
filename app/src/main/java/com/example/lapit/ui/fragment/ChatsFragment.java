@@ -53,14 +53,15 @@ public class ChatsFragment extends Fragment {
         mListChat=view.findViewById(R.id.reListChat);
         mListChat.setLayoutManager(new LinearLayoutManager(getContext()));
         mListChat.setHasFixedSize(true);
-        mref.child("chat").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        final String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mref.child("chat").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
              list=new ArrayList<>();
                 for (DataSnapshot dt : dataSnapshot.getChildren()) {
                     list.add(dt.getKey());
                 }
-                AdapterChat adapterChat=new AdapterChat(getContext(),list);
+                AdapterChat adapterChat=new AdapterChat(getContext(),list,uid);
                 mListChat.setAdapter(adapterChat);
             }
 

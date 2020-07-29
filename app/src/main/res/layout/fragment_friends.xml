@@ -6,9 +6,6 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.FriendsFragment">
 
- <androidx.appcompat.widget.SearchView
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reListFriends"
         android:layout_width="match_parent"
